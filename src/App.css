@@ -26,6 +26,19 @@
   color: rgb(112, 76, 182);
 }
 
+.openModalBtn {
+  width: 40px;
+  border-radius: 10px;
+}
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.appInfoInput {
+  width: 25%;
+  padding: 0px 10px;
+}
 @keyframes App-logo-float {
   0% {
     transform: translateY(0);
