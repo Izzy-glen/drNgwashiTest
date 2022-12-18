@@ -1,39 +1,36 @@
-import React, { useState } from "react";
-import logo from "./logo.svg";
-import { Counter } from "./features/counter/Counter";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Button } from "antd";
 import Appointment from "./views/Appointment";
 import { getPatients } from "./redux/patients/patientsActions";
 import { useDispatch } from "react-redux";
 import { getAppointments } from "./redux/appointments/appointmentsActions";
-import { uniqueNumGen } from "./features/unqueNumberGenerator";
+import Home from "./views/Home";
 
 function App() {
   const [open, setOpen] = useState(false);
+  const [type, setType] = useState("create");
   const showModal = () => {
     setOpen(true);
   };
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAppointments());
+    dispatch(getPatients());
+  }, [dispatch]);
   return (
     <div className="App">
-      <header className="App-header">
-        <Button type="primary" onClick={showModal}>
-          Create
-        </Button>
-        {/* <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p> */}
-        <Button onClick={() => dispatch(getAppointments())}>
-          Get Appointments
-        </Button>
-        <Button onClick={() => dispatch(getPatients())}>Get Patients</Button>
-        <Button onClick={() => uniqueNumGen(3)}>Get Unique Code</Button>
-      </header>
+      <Home showModal={showModal} setType={setType} />
 
-      <Appointment open={open} setOpen={setOpen} type="create" />
+      <div style={{ width: "90%", textAlign: "right", margin: "1em 0em" }}>
+        <Button type="primary" onClick={showModal}>
+          +
+        </Button>
+      </div>
+
+      <Appointment open={open} setOpen={setOpen} type={type} />
     </div>
   );
 }

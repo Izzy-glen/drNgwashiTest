@@ -1,0 +1,1 @@
+export const LIST_PATIENTS = "LIST_PATIENTS";

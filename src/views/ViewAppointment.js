@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "antd";
-import InputForm from "../components/InputForm";
-const Appointment = ({ open, setOpen, type, code }) => {
+import FormView from "../components/FormView";
+const ViewAppointment = ({ open, setOpen, code }) => {
   const [loading, setLoading] = useState(false);
 
   const handleOk = () => {
@@ -18,13 +18,7 @@ const Appointment = ({ open, setOpen, type, code }) => {
     <>
       <Modal
         open={open}
-        title={
-          type === "create" ? (
-            <h2>New Appointment</h2>
-          ) : (
-            <h2>Edit Appointment</h2>
-          )
-        }
+        title={<h2>View Appointment #{code}</h2>}
         centered
         width="100%"
         style={{
@@ -35,10 +29,10 @@ const Appointment = ({ open, setOpen, type, code }) => {
         footer={null}
       >
         <div>
-          <InputForm handleOk={handleOk} loading={loading} editCode={code} />
+          <FormView handleOk={handleOk} loading={loading} editCode={code} />
         </div>
       </Modal>
     </>
   );
 };
-export default Appointment;
+export default ViewAppointment;

@@ -1,5 +1,6 @@
 import { collection, getDocs, query } from "firebase/firestore";
-import { db, firestore } from "../../firebase-config";
+import { db } from "../../firebase-config";
+import { LIST_PATIENTS } from "./patientTypes";
 
 export const getPatients = () => async (dispatch, getState) => {
   const q = query(collection(db, "CLIENTS"));
@@ -11,7 +12,7 @@ export const getPatients = () => async (dispatch, getState) => {
       console.log(doc.id, " => ", doc.data());
       temp.push(doc.data());
     });
-    dispatch({ type: "LIST_PATIENTS", payload: temp });
+    dispatch({ type: LIST_PATIENTS, payload: temp });
   } catch (error) {
     console.log("error getting patients", error);
   }

@@ -13,7 +13,7 @@ import TextArea from "antd/es/input/TextArea";
 import { useDispatch, useSelector } from "react-redux";
 import { createAppointment } from "../redux/appointments/appointmentsActions";
 
-const InputForm = ({ handleOk, loading, editCode }) => {
+const FormView = ({ handleOk, loading, editCode }) => {
   const allUsers = useSelector((state) => Object.values(state.patients));
 
   const userToEdit = allUsers?.map((user) => user.uniqueCode === editCode);
@@ -400,4 +400,4 @@ const InputForm = ({ handleOk, loading, editCode }) => {
     </Form>
   );
 };
-export default InputForm;
+export default FormView;
